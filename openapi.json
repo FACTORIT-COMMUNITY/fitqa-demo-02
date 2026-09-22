@@ -1,0 +1,4780 @@
+{
+  "components": {
+    "schemas": {
+      "CambioClave": {
+        "properties": {
+          "clave_actual": {
+            "title": "Clave Actual",
+            "type": "string"
+          },
+          "clave_nueva": {
+            "maxLength": 72,
+            "minLength": 8,
+            "title": "Clave Nueva",
+            "type": "string"
+          }
+        },
+        "required": [
+          "clave_actual",
+          "clave_nueva"
+        ],
+        "title": "CambioClave",
+        "type": "object"
+      },
+      "CambioEstadoCancha": {
+        "properties": {
+          "estado": {
+            "title": "Estado",
+            "type": "string"
+          }
+        },
+        "required": [
+          "estado"
+        ],
+        "title": "CambioEstadoCancha",
+        "type": "object"
+      },
+      "CambioRol": {
+        "properties": {
+          "rol": {
+            "title": "Rol",
+            "type": "string"
+          }
+        },
+        "required": [
+          "rol"
+        ],
+        "title": "CambioRol",
+        "type": "object"
+      },
+      "CanchaEditada": {
+        "properties": {
+          "nombre": {
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Nombre",
+            "type": "string"
+          },
+          "precio_hora": {
+            "default": 0,
+            "maximum": 10000000.0,
+            "minimum": 0.0,
+            "title": "Precio Hora",
+            "type": "integer"
+          },
+          "sede_id": {
+            "title": "Sede Id",
+            "type": "integer"
+          },
+          "superficie": {
+            "default": "sintetico",
+            "title": "Superficie",
+            "type": "string"
+          },
+          "techada": {
+            "default": false,
+            "title": "Techada",
+            "type": "boolean"
+          },
+          "tipo": {
+            "default": "futbol5",
+            "title": "Tipo",
+            "type": "string"
+          }
+        },
+        "required": [
+          "sede_id",
+          "nombre"
+        ],
+        "title": "CanchaEditada",
+        "type": "object"
+      },
+      "CanchaNueva": {
+        "properties": {
+          "nombre": {
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Nombre",
+            "type": "string"
+          },
+          "precio_hora": {
+            "default": 0,
+            "maximum": 10000000.0,
+            "minimum": 0.0,
+            "title": "Precio Hora",
+            "type": "integer"
+          },
+          "sede_id": {
+            "title": "Sede Id",
+            "type": "integer"
+          },
+          "superficie": {
+            "default": "sintetico",
+            "title": "Superficie",
+            "type": "string"
+          },
+          "techada": {
+            "default": false,
+            "title": "Techada",
+            "type": "boolean"
+          },
+          "tipo": {
+            "default": "futbol5",
+            "title": "Tipo",
+            "type": "string"
+          }
+        },
+        "required": [
+          "sede_id",
+          "nombre"
+        ],
+        "title": "CanchaNueva",
+        "type": "object"
+      },
+      "Credenciales": {
+        "properties": {
+          "clave": {
+            "title": "Clave",
+            "type": "string"
+          },
+          "email": {
+            "title": "Email",
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "clave"
+        ],
+        "title": "Credenciales",
+        "type": "object"
+      },
+      "EquipoEditado": {
+        "properties": {
+          "capitan_id": {
+            "title": "Capitan Id",
+            "type": "integer"
+          },
+          "nombre": {
+            "maxLength": 60,
+            "minLength": 2,
+            "title": "Nombre",
+            "type": "string"
+          }
+        },
+        "required": [
+          "nombre",
+          "capitan_id"
+        ],
+        "title": "EquipoEditado",
+        "type": "object"
+      },
+      "EquipoNuevo": {
+        "properties": {
+          "capitan_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Capitan Id"
+          },
+          "nombre": {
+            "maxLength": 60,
+            "minLength": 2,
+            "title": "Nombre",
+            "type": "string"
+          }
+        },
+        "required": [
+          "nombre"
+        ],
+        "title": "EquipoNuevo",
+        "type": "object"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "title": "Detail",
+            "type": "array"
+          }
+        },
+        "title": "HTTPValidationError",
+        "type": "object"
+      },
+      "HorarioEditado": {
+        "properties": {
+          "activo": {
+            "default": true,
+            "title": "Activo",
+            "type": "boolean"
+          },
+          "dia_semana": {
+            "maximum": 6.0,
+            "minimum": 0.0,
+            "title": "Dia Semana",
+            "type": "integer"
+          },
+          "hora_fin": {
+            "title": "Hora Fin",
+            "type": "string"
+          },
+          "hora_inicio": {
+            "title": "Hora Inicio",
+            "type": "string"
+          }
+        },
+        "required": [
+          "dia_semana",
+          "hora_inicio",
+          "hora_fin"
+        ],
+        "title": "HorarioEditado",
+        "type": "object"
+      },
+      "HorarioNuevo": {
+        "properties": {
+          "activo": {
+            "default": true,
+            "title": "Activo",
+            "type": "boolean"
+          },
+          "dia_semana": {
+            "maximum": 6.0,
+            "minimum": 0.0,
+            "title": "Dia Semana",
+            "type": "integer"
+          },
+          "hora_fin": {
+            "title": "Hora Fin",
+            "type": "string"
+          },
+          "hora_inicio": {
+            "title": "Hora Inicio",
+            "type": "string"
+          }
+        },
+        "required": [
+          "dia_semana",
+          "hora_inicio",
+          "hora_fin"
+        ],
+        "title": "HorarioNuevo",
+        "type": "object"
+      },
+      "MiembroNuevo": {
+        "properties": {
+          "usuario_id": {
+            "title": "Usuario Id",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "usuario_id"
+        ],
+        "title": "MiembroNuevo",
+        "type": "object"
+      },
+      "MotivoCancelacion": {
+        "properties": {
+          "motivo": {
+            "anyOf": [
+              {
+                "maxLength": 280,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Motivo"
+          }
+        },
+        "title": "MotivoCancelacion",
+        "type": "object"
+      },
+      "Registro": {
+        "properties": {
+          "clave": {
+            "maxLength": 72,
+            "minLength": 8,
+            "title": "Clave",
+            "type": "string"
+          },
+          "email": {
+            "maxLength": 120,
+            "minLength": 5,
+            "title": "Email",
+            "type": "string"
+          },
+          "nombre": {
+            "maxLength": 80,
+            "minLength": 2,
+            "title": "Nombre",
+            "type": "string"
+          },
+          "telefono": {
+            "anyOf": [
+              {
+                "maxLength": 30,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Telefono"
+          }
+        },
+        "required": [
+          "nombre",
+          "email",
+          "clave"
+        ],
+        "title": "Registro",
+        "type": "object"
+      },
+      "ResenaEditada": {
+        "properties": {
+          "comentario": {
+            "anyOf": [
+              {
+                "maxLength": 500,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Comentario"
+          },
+          "puntaje": {
+            "maximum": 5.0,
+            "minimum": 1.0,
+            "title": "Puntaje",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "puntaje"
+        ],
+        "title": "ResenaEditada",
+        "type": "object"
+      },
+      "ResenaNueva": {
+        "properties": {
+          "comentario": {
+            "anyOf": [
+              {
+                "maxLength": 500,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Comentario"
+          },
+          "puntaje": {
+            "maximum": 5.0,
+            "minimum": 1.0,
+            "title": "Puntaje",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "puntaje"
+        ],
+        "title": "ResenaNueva",
+        "type": "object"
+      },
+      "ReservaEditada": {
+        "properties": {
+          "equipo_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Equipo Id"
+          },
+          "fecha": {
+            "title": "Fecha",
+            "type": "string"
+          },
+          "hora_fin": {
+            "title": "Hora Fin",
+            "type": "string"
+          },
+          "hora_inicio": {
+            "title": "Hora Inicio",
+            "type": "string"
+          },
+          "nota": {
+            "anyOf": [
+              {
+                "maxLength": 280,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Nota"
+          }
+        },
+        "required": [
+          "fecha",
+          "hora_inicio",
+          "hora_fin"
+        ],
+        "title": "ReservaEditada",
+        "type": "object"
+      },
+      "ReservaNueva": {
+        "properties": {
+          "cancha_id": {
+            "title": "Cancha Id",
+            "type": "integer"
+          },
+          "equipo_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Equipo Id"
+          },
+          "fecha": {
+            "title": "Fecha",
+            "type": "string"
+          },
+          "hora_fin": {
+            "title": "Hora Fin",
+            "type": "string"
+          },
+          "hora_inicio": {
+            "title": "Hora Inicio",
+            "type": "string"
+          },
+          "nota": {
+            "anyOf": [
+              {
+                "maxLength": 280,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Nota"
+          },
+          "usuario_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Usuario Id"
+          }
+        },
+        "required": [
+          "cancha_id",
+          "fecha",
+          "hora_inicio",
+          "hora_fin"
+        ],
+        "title": "ReservaNueva",
+        "type": "object"
+      },
+      "SedeEditada": {
+        "properties": {
+          "activa": {
+            "default": true,
+            "title": "Activa",
+            "type": "boolean"
+          },
+          "ciudad": {
+            "maxLength": 80,
+            "minLength": 2,
+            "title": "Ciudad",
+            "type": "string"
+          },
+          "direccion": {
+            "maxLength": 160,
+            "minLength": 3,
+            "title": "Direccion",
+            "type": "string"
+          },
+          "duenio_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duenio Id"
+          },
+          "nombre": {
+            "maxLength": 80,
+            "minLength": 2,
+            "title": "Nombre",
+            "type": "string"
+          },
+          "telefono": {
+            "anyOf": [
+              {
+                "maxLength": 30,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Telefono"
+          }
+        },
+        "required": [
+          "nombre",
+          "direccion",
+          "ciudad"
+        ],
+        "title": "SedeEditada",
+        "type": "object"
+      },
+      "SedeNueva": {
+        "properties": {
+          "ciudad": {
+            "maxLength": 80,
+            "minLength": 2,
+            "title": "Ciudad",
+            "type": "string"
+          },
+          "direccion": {
+            "maxLength": 160,
+            "minLength": 3,
+            "title": "Direccion",
+            "type": "string"
+          },
+          "duenio_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duenio Id"
+          },
+          "nombre": {
+            "maxLength": 80,
+            "minLength": 2,
+            "title": "Nombre",
+            "type": "string"
+          },
+          "telefono": {
+            "anyOf": [
+              {
+                "maxLength": 30,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Telefono"
+          }
+        },
+        "required": [
+          "nombre",
+          "direccion",
+          "ciudad"
+        ],
+        "title": "SedeNueva",
+        "type": "object"
+      },
+      "UsuarioEditado": {
+        "properties": {
+          "activo": {
+            "default": true,
+            "title": "Activo",
+            "type": "boolean"
+          },
+          "email": {
+            "maxLength": 120,
+            "minLength": 5,
+            "title": "Email",
+            "type": "string"
+          },
+          "nombre": {
+            "maxLength": 80,
+            "minLength": 2,
+            "title": "Nombre",
+            "type": "string"
+          },
+          "telefono": {
+            "anyOf": [
+              {
+                "maxLength": 30,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Telefono"
+          }
+        },
+        "required": [
+          "nombre",
+          "email"
+        ],
+        "title": "UsuarioEditado",
+        "type": "object"
+      },
+      "UsuarioNuevo": {
+        "properties": {
+          "clave": {
+            "maxLength": 72,
+            "minLength": 8,
+            "title": "Clave",
+            "type": "string"
+          },
+          "email": {
+            "maxLength": 120,
+            "minLength": 5,
+            "title": "Email",
+            "type": "string"
+          },
+          "nombre": {
+            "maxLength": 80,
+            "minLength": 2,
+            "title": "Nombre",
+            "type": "string"
+          },
+          "rol": {
+            "default": "jugador",
+            "title": "Rol",
+            "type": "string"
+          },
+          "telefono": {
+            "anyOf": [
+              {
+                "maxLength": 30,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Telefono"
+          }
+        },
+        "required": [
+          "nombre",
+          "email",
+          "clave"
+        ],
+        "title": "UsuarioNuevo",
+        "type": "object"
+      },
+      "ValidationError": {
+        "properties": {
+          "ctx": {
+            "title": "Context",
+            "type": "object"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "title": "Location",
+            "type": "array"
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError",
+        "type": "object"
+      }
+    }
+  },
+  "info": {
+    "description": "API de reserva de canchas de futbol 5 y 7. Autenticacion por token opaco en `Authorization: Bearer <token>`, tres roles (jugador, duenio, admin) y reservas con estado.",
+    "title": "Reserva de canchas",
+    "version": "1.4.0"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/admin/auditoria": {
+      "get": {
+        "description": "Registro de acciones, de la mas nueva a la mas vieja.",
+        "operationId": "auditoria_admin_auditoria_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "accion",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Accion"
+            }
+          },
+          {
+            "in": "query",
+            "name": "usuario_id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Usuario Id"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limite",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Limite"
+            }
+          },
+          {
+            "in": "query",
+            "name": "desde",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Desde"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Auditoria",
+        "tags": [
+          "sistema"
+        ]
+      }
+    },
+    "/admin/reset": {
+      "post": {
+        "description": "Devuelve la base a la semilla documentada en el README.\n\nNo pide sesion a proposito: la base es en memoria y sin este endpoint abierto no habria\nforma de aislar una prueba de la anterior. En un sistema de verdad esto no existiria.",
+        "operationId": "reiniciar_admin_reset_post",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Reiniciar",
+        "tags": [
+          "sistema"
+        ]
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "description": "Devuelve un token opaco para mandar en `Authorization: Bearer <token>`.\n\nEl email inexistente y la clave equivocada dan exactamente la misma respuesta. Es\ndeliberado y esta explicado en las notas de diseno del README.",
+        "operationId": "iniciar_sesion_auth_login_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Credenciales"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Iniciar Sesion",
+        "tags": [
+          "autenticacion"
+        ]
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "description": "Borra la sesion. Es idempotente: cerrar una sesion ya cerrada tambien da 204.",
+        "operationId": "cerrar_sesion_auth_logout_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Cerrar Sesion",
+        "tags": [
+          "autenticacion"
+        ]
+      }
+    },
+    "/auth/password": {
+      "put": {
+        "description": "Cambia la clave propia e invalida todas las sesiones, incluida la que hizo el cambio.",
+        "operationId": "cambiar_clave_auth_password_put",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CambioClave"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Cambiar Clave",
+        "tags": [
+          "autenticacion"
+        ]
+      }
+    },
+    "/auth/registro": {
+      "post": {
+        "description": "Alta publica. Todo registro publico nace con rol `jugador`; para crear un duenio o\nun admin hay que pasar por `POST /usuarios`, que pide sesion de admin.",
+        "operationId": "registrar_auth_registro_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Registro"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Registrar",
+        "tags": [
+          "autenticacion"
+        ]
+      }
+    },
+    "/auth/yo": {
+      "get": {
+        "description": "El usuario de la sesion actual.",
+        "operationId": "quien_soy_auth_yo_get",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Quien Soy",
+        "tags": [
+          "autenticacion"
+        ]
+      }
+    },
+    "/canchas": {
+      "get": {
+        "description": "Listado publico de canchas, con filtros y orden.",
+        "operationId": "listar_canchas_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "sede_id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Sede Id"
+            }
+          },
+          {
+            "in": "query",
+            "name": "tipo",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Tipo"
+            }
+          },
+          {
+            "in": "query",
+            "name": "techada",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Techada"
+            }
+          },
+          {
+            "in": "query",
+            "name": "estado",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Estado"
+            }
+          },
+          {
+            "in": "query",
+            "name": "precio_max",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Precio Max"
+            }
+          },
+          {
+            "in": "query",
+            "name": "orden",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Orden"
+            }
+          },
+          {
+            "in": "query",
+            "name": "direccion",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Direccion"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limite",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Limite"
+            }
+          },
+          {
+            "in": "query",
+            "name": "desde",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Desde"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Listar",
+        "tags": [
+          "canchas"
+        ]
+      },
+      "post": {
+        "description": "Alta de cancha dentro de una sede.",
+        "operationId": "crear_canchas_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CanchaNueva"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Crear",
+        "tags": [
+          "canchas"
+        ]
+      }
+    },
+    "/canchas/{cancha_id}": {
+      "delete": {
+        "description": "Borra la cancha. Rebota si tiene reservas vigentes (pendientes o confirmadas):\nborrarla las dejaria huerfanas.",
+        "operationId": "borrar_canchas__cancha_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "cancha_id",
+            "required": true,
+            "schema": {
+              "title": "Cancha Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Borrar",
+        "tags": [
+          "canchas"
+        ]
+      },
+      "get": {
+        "description": "Una cancha.",
+        "operationId": "detalle_canchas__cancha_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "cancha_id",
+            "required": true,
+            "schema": {
+              "title": "Cancha Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Detalle",
+        "tags": [
+          "canchas"
+        ]
+      },
+      "put": {
+        "description": "Actualiza los datos de la cancha. No cambia el estado: para eso esta el PATCH.",
+        "operationId": "editar_canchas__cancha_id__put",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "cancha_id",
+            "required": true,
+            "schema": {
+              "title": "Cancha Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CanchaEditada"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Editar",
+        "tags": [
+          "canchas"
+        ]
+      }
+    },
+    "/canchas/{cancha_id}/disponibilidad": {
+      "get": {
+        "description": "Franjas libres y ocupadas de una cancha para una fecha.\n\nSe arma cruzando los horarios del dia de la semana con las reservas vigentes de esa\nfecha. Una reserva cancelada o con no-show libera la franja.",
+        "operationId": "disponibilidad_canchas__cancha_id__disponibilidad_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "cancha_id",
+            "required": true,
+            "schema": {
+              "title": "Cancha Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "fecha",
+            "required": true,
+            "schema": {
+              "title": "Fecha",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Disponibilidad",
+        "tags": [
+          "canchas"
+        ]
+      }
+    },
+    "/canchas/{cancha_id}/estado": {
+      "patch": {
+        "description": "Habilita, pone en mantenimiento o da de baja la cancha.",
+        "operationId": "cambiar_estado_canchas__cancha_id__estado_patch",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "cancha_id",
+            "required": true,
+            "schema": {
+              "title": "Cancha Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CambioEstadoCancha"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Cambiar Estado",
+        "tags": [
+          "canchas"
+        ]
+      }
+    },
+    "/canchas/{cancha_id}/horarios": {
+      "get": {
+        "description": "Franjas configuradas para la cancha.",
+        "operationId": "listar_canchas__cancha_id__horarios_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "cancha_id",
+            "required": true,
+            "schema": {
+              "title": "Cancha Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "dia_semana",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maximum": 6,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Dia Semana"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Listar",
+        "tags": [
+          "horarios"
+        ]
+      },
+      "post": {
+        "description": "Agrega una franja. Rebota si se pisa con otra del mismo dia.",
+        "operationId": "crear_canchas__cancha_id__horarios_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "cancha_id",
+            "required": true,
+            "schema": {
+              "title": "Cancha Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HorarioNuevo"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Crear",
+        "tags": [
+          "horarios"
+        ]
+      }
+    },
+    "/canchas/{cancha_id}/resenas": {
+      "get": {
+        "description": "Resenas de una cancha, de la mas nueva a la mas vieja.",
+        "operationId": "listar_canchas__cancha_id__resenas_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "cancha_id",
+            "required": true,
+            "schema": {
+              "title": "Cancha Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "puntaje_min",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maximum": 5,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Puntaje Min"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limite",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Limite"
+            }
+          },
+          {
+            "in": "query",
+            "name": "desde",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Desde"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Listar",
+        "tags": [
+          "resenas"
+        ]
+      },
+      "post": {
+        "description": "Deja una resena. Pide haber jugado ahi al menos una vez.",
+        "operationId": "crear_canchas__cancha_id__resenas_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "cancha_id",
+            "required": true,
+            "schema": {
+              "title": "Cancha Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResenaNueva"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Crear",
+        "tags": [
+          "resenas"
+        ]
+      }
+    },
+    "/canchas/{cancha_id}/reservas": {
+      "get": {
+        "description": "Reservas de una cancha. Es informacion de gestion: la ve quien administra la sede.",
+        "operationId": "reservas_de_la_cancha_canchas__cancha_id__reservas_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "cancha_id",
+            "required": true,
+            "schema": {
+              "title": "Cancha Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "fecha",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Fecha"
+            }
+          },
+          {
+            "in": "query",
+            "name": "estado",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Estado"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Reservas De La Cancha",
+        "tags": [
+          "canchas"
+        ]
+      }
+    },
+    "/equipos": {
+      "get": {
+        "description": "Listado publico de equipos.",
+        "operationId": "listar_equipos_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "busqueda",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Busqueda"
+            }
+          },
+          {
+            "in": "query",
+            "name": "capitan_id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Capitan Id"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limite",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Limite"
+            }
+          },
+          {
+            "in": "query",
+            "name": "desde",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Desde"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Listar",
+        "tags": [
+          "equipos"
+        ]
+      },
+      "post": {
+        "description": "Crea un equipo. Quien lo crea queda de capitan salvo que el admin diga otra cosa.",
+        "operationId": "crear_equipos_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EquipoNuevo"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Crear",
+        "tags": [
+          "equipos"
+        ]
+      }
+    },
+    "/equipos/{equipo_id}": {
+      "delete": {
+        "description": "Disuelve el equipo. Las reservas que lo mencionaban quedan sin equipo, no se borran.",
+        "operationId": "borrar_equipos__equipo_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "equipo_id",
+            "required": true,
+            "schema": {
+              "title": "Equipo Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Borrar",
+        "tags": [
+          "equipos"
+        ]
+      },
+      "get": {
+        "description": "Un equipo con sus miembros.",
+        "operationId": "detalle_equipos__equipo_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "equipo_id",
+            "required": true,
+            "schema": {
+              "title": "Equipo Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Detalle",
+        "tags": [
+          "equipos"
+        ]
+      },
+      "put": {
+        "description": "Renombra el equipo o le cambia el capitan. El capitan nuevo tiene que ser miembro.",
+        "operationId": "editar_equipos__equipo_id__put",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "equipo_id",
+            "required": true,
+            "schema": {
+              "title": "Equipo Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EquipoEditado"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Editar",
+        "tags": [
+          "equipos"
+        ]
+      }
+    },
+    "/equipos/{equipo_id}/miembros": {
+      "post": {
+        "description": "Suma un jugador al equipo.",
+        "operationId": "agregar_miembro_equipos__equipo_id__miembros_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "equipo_id",
+            "required": true,
+            "schema": {
+              "title": "Equipo Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MiembroNuevo"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Agregar Miembro",
+        "tags": [
+          "equipos"
+        ]
+      }
+    },
+    "/equipos/{equipo_id}/miembros/{usuario_id}": {
+      "delete": {
+        "description": "Saca un jugador del equipo. Al capitan no se lo puede sacar.",
+        "operationId": "sacar_miembro_equipos__equipo_id__miembros__usuario_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "equipo_id",
+            "required": true,
+            "schema": {
+              "title": "Equipo Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "path",
+            "name": "usuario_id",
+            "required": true,
+            "schema": {
+              "title": "Usuario Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Sacar Miembro",
+        "tags": [
+          "equipos"
+        ]
+      }
+    },
+    "/health": {
+      "get": {
+        "description": "Responde apenas el proceso esta listo para atender.",
+        "operationId": "salud_health_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Salud",
+        "tags": [
+          "sistema"
+        ]
+      }
+    },
+    "/horarios/{horario_id}": {
+      "delete": {
+        "description": "Saca la franja. Las reservas ya hechas sobre ella no se tocan: son historia.",
+        "operationId": "borrar_horarios__horario_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "horario_id",
+            "required": true,
+            "schema": {
+              "title": "Horario Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Borrar",
+        "tags": [
+          "horarios"
+        ]
+      },
+      "get": {
+        "description": "Una franja.",
+        "operationId": "detalle_horarios__horario_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "horario_id",
+            "required": true,
+            "schema": {
+              "title": "Horario Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Detalle",
+        "tags": [
+          "horarios"
+        ]
+      },
+      "put": {
+        "description": "Mueve o desactiva una franja.",
+        "operationId": "editar_horarios__horario_id__put",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "horario_id",
+            "required": true,
+            "schema": {
+              "title": "Horario Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HorarioEditado"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Editar",
+        "tags": [
+          "horarios"
+        ]
+      }
+    },
+    "/panel/cancelaciones": {
+      "get": {
+        "description": "Cancelaciones y no-shows por cancha, con su tasa sobre el total de reservas.",
+        "operationId": "cancelaciones_panel_cancelaciones_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "sede_id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Sede Id"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Cancelaciones",
+        "tags": [
+          "panel"
+        ]
+      }
+    },
+    "/panel/ocupacion": {
+      "get": {
+        "description": "Porcentaje de franjas ocupadas por cancha para una fecha.\n\nEl denominador son las franjas configuradas para ese dia de la semana; el numerador,\nlas reservas que efectivamente ocupan la cancha.",
+        "operationId": "ocupacion_panel_ocupacion_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "fecha",
+            "required": true,
+            "schema": {
+              "title": "Fecha",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sede_id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Sede Id"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Ocupacion",
+        "tags": [
+          "panel"
+        ]
+      }
+    },
+    "/panel/ranking-canchas": {
+      "get": {
+        "description": "Canchas ordenadas por cantidad de reservas vigentes o jugadas.",
+        "operationId": "ranking_panel_ranking_canchas_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "sede_id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Sede Id"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limite",
+            "required": false,
+            "schema": {
+              "default": 10,
+              "maximum": 50,
+              "minimum": 1,
+              "title": "Limite",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Ranking",
+        "tags": [
+          "panel"
+        ]
+      }
+    },
+    "/panel/resumen": {
+      "get": {
+        "description": "Conteos gruesos: canchas, reservas por estado y resenas.",
+        "operationId": "resumen_panel_resumen_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "sede_id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Sede Id"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Resumen",
+        "tags": [
+          "panel"
+        ]
+      }
+    },
+    "/resenas/{resena_id}": {
+      "delete": {
+        "description": "Borra la propia resena. El admin puede borrar cualquiera.",
+        "operationId": "borrar_resenas__resena_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "resena_id",
+            "required": true,
+            "schema": {
+              "title": "Resena Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Borrar",
+        "tags": [
+          "resenas"
+        ]
+      },
+      "get": {
+        "description": "Una resena.",
+        "operationId": "detalle_resenas__resena_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "resena_id",
+            "required": true,
+            "schema": {
+              "title": "Resena Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Detalle",
+        "tags": [
+          "resenas"
+        ]
+      },
+      "put": {
+        "description": "Corrige la propia resena.",
+        "operationId": "editar_resenas__resena_id__put",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "resena_id",
+            "required": true,
+            "schema": {
+              "title": "Resena Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResenaEditada"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Editar",
+        "tags": [
+          "resenas"
+        ]
+      }
+    },
+    "/reservas": {
+      "get": {
+        "description": "Listado paginado. Un jugador solo ve las suyas; duenio y admin ven todas.",
+        "operationId": "listar_reservas_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "cancha_id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cancha Id"
+            }
+          },
+          {
+            "in": "query",
+            "name": "usuario_id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Usuario Id"
+            }
+          },
+          {
+            "in": "query",
+            "name": "estado",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Estado"
+            }
+          },
+          {
+            "in": "query",
+            "name": "fecha",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Fecha"
+            }
+          },
+          {
+            "in": "query",
+            "name": "orden",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Orden"
+            }
+          },
+          {
+            "in": "query",
+            "name": "direccion",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Direccion"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limite",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Limite"
+            }
+          },
+          {
+            "in": "query",
+            "name": "desde",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Desde"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Listar",
+        "tags": [
+          "reservas"
+        ]
+      },
+      "post": {
+        "description": "Crea una reserva en estado `pendiente`.\n\nRebota si la cancha no esta habilitada, si la franja no existe en el horario de ese dia\no si choca con otra reserva de la misma cancha, fecha y rango.",
+        "operationId": "crear_reservas_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReservaNueva"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Crear",
+        "tags": [
+          "reservas"
+        ]
+      }
+    },
+    "/reservas/agenda": {
+      "get": {
+        "description": "Grilla del dia: por cada cancha, sus franjas con quien las ocupa.\n\nSe declara antes que `/{reserva_id}` a proposito: si estuviera despues, `agenda` se\nleeria como un id y la ruta nunca se alcanzaria.",
+        "operationId": "agenda_reservas_agenda_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "fecha",
+            "required": true,
+            "schema": {
+              "title": "Fecha",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sede_id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Sede Id"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Agenda",
+        "tags": [
+          "reservas"
+        ]
+      }
+    },
+    "/reservas/{reserva_id}": {
+      "delete": {
+        "description": "Saca la reserva del sistema.\n\nEs idempotente a proposito: borrar una reserva que ya no esta tambien devuelve 204. Ver\nlas notas de diseno del README.",
+        "operationId": "borrar_reservas__reserva_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "reserva_id",
+            "required": true,
+            "schema": {
+              "title": "Reserva Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Borrar",
+        "tags": [
+          "reservas"
+        ]
+      },
+      "get": {
+        "description": "Una reserva.",
+        "operationId": "detalle_reservas__reserva_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "reserva_id",
+            "required": true,
+            "schema": {
+              "title": "Reserva Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Detalle",
+        "tags": [
+          "reservas"
+        ]
+      },
+      "put": {
+        "description": "Mueve una reserva de fecha u horario. Solo mientras siga `pendiente`.",
+        "operationId": "editar_reservas__reserva_id__put",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "reserva_id",
+            "required": true,
+            "schema": {
+              "title": "Reserva Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReservaEditada"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Editar",
+        "tags": [
+          "reservas"
+        ]
+      }
+    },
+    "/reservas/{reserva_id}/cancelar": {
+      "post": {
+        "description": "Cancela la reserva y libera la franja.",
+        "operationId": "cancelar_reservas__reserva_id__cancelar_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "reserva_id",
+            "required": true,
+            "schema": {
+              "title": "Reserva Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  {
+                    "$ref": "#/components/schemas/MotivoCancelacion"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Cuerpo"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Cancelar",
+        "tags": [
+          "reservas"
+        ]
+      }
+    },
+    "/reservas/{reserva_id}/completar": {
+      "post": {
+        "description": "Cierra la reserva como jugada. Solo sobre una reserva confirmada.",
+        "operationId": "completar_reservas__reserva_id__completar_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "reserva_id",
+            "required": true,
+            "schema": {
+              "title": "Reserva Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Completar",
+        "tags": [
+          "reservas"
+        ]
+      }
+    },
+    "/reservas/{reserva_id}/confirmar": {
+      "post": {
+        "description": "Confirma la reserva. La confirma quien administra la cancha, o el admin.",
+        "operationId": "confirmar_reservas__reserva_id__confirmar_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "reserva_id",
+            "required": true,
+            "schema": {
+              "title": "Reserva Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Confirmar",
+        "tags": [
+          "reservas"
+        ]
+      }
+    },
+    "/reservas/{reserva_id}/historial": {
+      "get": {
+        "description": "Los cambios de estado de la reserva, del mas viejo al mas nuevo.",
+        "operationId": "historial_reservas__reserva_id__historial_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "reserva_id",
+            "required": true,
+            "schema": {
+              "title": "Reserva Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Historial",
+        "tags": [
+          "reservas"
+        ]
+      }
+    },
+    "/reservas/{reserva_id}/no-show": {
+      "post": {
+        "description": "Marca que el titular no se presento. Solo sobre una reserva confirmada.",
+        "operationId": "marcar_no_show_reservas__reserva_id__no_show_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "reserva_id",
+            "required": true,
+            "schema": {
+              "title": "Reserva Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Marcar No Show",
+        "tags": [
+          "reservas"
+        ]
+      }
+    },
+    "/sedes": {
+      "get": {
+        "description": "Listado publico de sedes. No pide sesion: es la vitrina del sistema.",
+        "operationId": "listar_sedes_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "ciudad",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Ciudad"
+            }
+          },
+          {
+            "in": "query",
+            "name": "activa",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Activa"
+            }
+          },
+          {
+            "in": "query",
+            "name": "orden",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Orden"
+            }
+          },
+          {
+            "in": "query",
+            "name": "direccion",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Direccion"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limite",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Limite"
+            }
+          },
+          {
+            "in": "query",
+            "name": "desde",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Desde"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Listar",
+        "tags": [
+          "sedes"
+        ]
+      },
+      "post": {
+        "description": "Alta de sede. Solo el admin crea sedes; el duenio administra las que le asignaron.",
+        "operationId": "crear_sedes_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SedeNueva"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Crear",
+        "tags": [
+          "sedes"
+        ]
+      }
+    },
+    "/sedes/{sede_id}": {
+      "delete": {
+        "description": "Baja de sede. Rebota si todavia tiene canchas: primero se dan de baja las canchas.",
+        "operationId": "borrar_sedes__sede_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "sede_id",
+            "required": true,
+            "schema": {
+              "title": "Sede Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Borrar",
+        "tags": [
+          "sedes"
+        ]
+      },
+      "get": {
+        "description": "Una sede.",
+        "operationId": "detalle_sedes__sede_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "sede_id",
+            "required": true,
+            "schema": {
+              "title": "Sede Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Detalle",
+        "tags": [
+          "sedes"
+        ]
+      },
+      "put": {
+        "description": "Actualiza los datos de la sede. El duenio puede editar la suya.",
+        "operationId": "editar_sedes__sede_id__put",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "sede_id",
+            "required": true,
+            "schema": {
+              "title": "Sede Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SedeEditada"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Editar",
+        "tags": [
+          "sedes"
+        ]
+      }
+    },
+    "/sedes/{sede_id}/canchas": {
+      "get": {
+        "description": "Canchas que pertenecen a la sede.",
+        "operationId": "canchas_de_la_sede_sedes__sede_id__canchas_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "sede_id",
+            "required": true,
+            "schema": {
+              "title": "Sede Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "estado",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Estado"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Canchas De La Sede",
+        "tags": [
+          "sedes"
+        ]
+      }
+    },
+    "/usuarios": {
+      "get": {
+        "description": "Listado paginado de usuarios.",
+        "operationId": "listar_usuarios_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "rol",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Rol"
+            }
+          },
+          {
+            "in": "query",
+            "name": "activo",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Activo"
+            }
+          },
+          {
+            "in": "query",
+            "name": "busqueda",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Busqueda"
+            }
+          },
+          {
+            "in": "query",
+            "name": "orden",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Orden"
+            }
+          },
+          {
+            "in": "query",
+            "name": "direccion",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Direccion"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limite",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Limite"
+            }
+          },
+          {
+            "in": "query",
+            "name": "desde",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Desde"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Listar",
+        "tags": [
+          "usuarios"
+        ]
+      },
+      "post": {
+        "description": "Alta con rol elegido. Es la unica forma de crear un duenio o un admin.",
+        "operationId": "crear_usuarios_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioNuevo"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Crear",
+        "tags": [
+          "usuarios"
+        ]
+      }
+    },
+    "/usuarios/{usuario_id}": {
+      "delete": {
+        "description": "Baja logica: el usuario queda inactivo y sus sesiones se cortan. No se borra la fila\nporque las reservas historicas siguen apuntando a ella.",
+        "operationId": "dar_de_baja_usuarios__usuario_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "usuario_id",
+            "required": true,
+            "schema": {
+              "title": "Usuario Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Dar De Baja",
+        "tags": [
+          "usuarios"
+        ]
+      },
+      "get": {
+        "description": "Un usuario. Cada cual puede ver el propio; el resto, solo el admin.",
+        "operationId": "detalle_usuarios__usuario_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "usuario_id",
+            "required": true,
+            "schema": {
+              "title": "Usuario Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Detalle",
+        "tags": [
+          "usuarios"
+        ]
+      },
+      "put": {
+        "description": "Actualiza nombre, email, telefono y estado de alta.",
+        "operationId": "editar_usuarios__usuario_id__put",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "usuario_id",
+            "required": true,
+            "schema": {
+              "title": "Usuario Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioEditado"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Editar",
+        "tags": [
+          "usuarios"
+        ]
+      }
+    },
+    "/usuarios/{usuario_id}/reservas": {
+      "get": {
+        "description": "Reservas de un usuario. Cada cual ve las propias; el admin, las de cualquiera.",
+        "operationId": "reservas_del_usuario_usuarios__usuario_id__reservas_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "usuario_id",
+            "required": true,
+            "schema": {
+              "title": "Usuario Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "estado",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Estado"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limite",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Limite"
+            }
+          },
+          {
+            "in": "query",
+            "name": "desde",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Desde"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Reservas Del Usuario",
+        "tags": [
+          "usuarios"
+        ]
+      }
+    },
+    "/usuarios/{usuario_id}/rol": {
+      "patch": {
+        "description": "Promueve o degrada. El admin no puede degradarse a si mismo: si lo hiciera y fuera el\nunico, el sistema quedaria sin nadie que pueda administrarlo.",
+        "operationId": "cambiar_rol_usuarios__usuario_id__rol_patch",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "usuario_id",
+            "required": true,
+            "schema": {
+              "title": "Usuario Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CambioRol"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Cambiar Rol",
+        "tags": [
+          "usuarios"
+        ]
+      }
+    },
+    "/version": {
+      "get": {
+        "description": "Version del servicio y conteo de filas por tabla, util para saber si hubo reset.",
+        "operationId": "version_version_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Version",
+        "tags": [
+          "sistema"
+        ]
+      }
+    }
+  }
+}

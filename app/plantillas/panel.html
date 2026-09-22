@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block contenido %}
+<p>Numeros de gestion. Pide rol duenio o admin.</p>
+
+<form id="formulario">
+  <div class="fila">
+    <div>
+      <label for="fecha">Fecha para la ocupacion</label>
+      <input id="fecha" type="date" value="2026-10-05">
+    </div>
+    <div>
+      <label for="sede">Sede (opcional)</label>
+      <input id="sede" type="number" min="1" placeholder="todas">
+    </div>
+    <button type="submit">Actualizar</button>
+  </div>
+</form>
+
+<h2>Resumen</h2>
+<table><tbody id="resumen"></tbody></table>
+
+<h2>Ocupacion del dia</h2>
+<table>
+  <thead><tr><th>#</th><th>Cancha</th><th>Franjas</th><th>Reservadas</th><th>Ocupacion</th></tr></thead>
+  <tbody id="ocupacion"></tbody>
+</table>
+
+<h2>Cancelaciones</h2>
+<table>
+  <thead><tr><th>#</th><th>Cancha</th><th>Reservas</th><th>Canceladas</th><th>No-show</th><th>Tasa</th></tr></thead>
+  <tbody id="cancelaciones"></tbody>
+</table>
+
+<h2>Ranking</h2>
+<table>
+  <thead><tr><th>#</th><th>Cancha</th><th>Reservas</th><th>Puntaje</th></tr></thead>
+  <tbody id="ranking"></tbody>
+</table>
+<div class="aviso" id="aviso" hidden></div>
+{% endblock %}
+
+{% block guion %}
+<script>
+  function pintar(id, filas, columnas) {
+    const cuerpo = document.getElementById(id);
+    cuerpo.innerHTML = "";
+    filas.forEach((f) => {
+      const tr = document.createElement("tr");
+      celdas(tr, columnas.map((c) => f[c]));
+      cuerpo.appendChild(tr);
+    });
+  }
+
+  async function cargar() {
+    const fecha = document.getElementById("fecha").value;
+    const sede = document.getElementById("sede").value;
+    const cola = sede ? "&sede_id=" + sede : "";
+    try {
+      const resumen = await api("/panel/resumen?" + cola.slice(1));
+      const cuerpo = document.getElementById("resumen");
+      cuerpo.innerHTML = "";
+      const lineas = [
+        ["Canchas", resumen.canchas],
+        ["Habilitadas", resumen.habilitadas],
+        ["Resenas", resumen.resenas],
+        ["Puntaje promedio", resumen.puntaje_promedio],
+      ];
+      Object.entries(resumen.reservas || {}).forEach(([k, v]) => lineas.push(["Reservas " + k, v]));
+      lineas.forEach(([k, v]) => {
+        const tr = document.createElement("tr");
+        const th = document.createElement("th");
+        th.textContent = k;
+        tr.appendChild(th);
+        celdas(tr, [v]);
+        cuerpo.appendChild(tr);
+      });
+
+      const ocupacion = await api("/panel/ocupacion?fecha=" + fecha + cola);
+      pintar("ocupacion", ocupacion.datos, ["cancha_id", "cancha", "franjas", "reservadas", "ocupacion"]);
+
+      const cancelaciones = await api("/panel/cancelaciones?" + cola.slice(1));
+      pintar("cancelaciones", cancelaciones.datos, ["cancha_id", "cancha", "reservas", "canceladas", "no_show", "tasa"]);
+
+      const ranking = await api("/panel/ranking-canchas?" + cola.slice(1));
+      pintar("ranking", ranking.datos, ["cancha_id", "cancha", "reservas", "puntaje_promedio"]);
+
+      avisar("aviso", "Panel actualizado.", false);
+    } catch (e) {
+      avisar("aviso", e.message, true);
+    }
+  }
+
+  document.getElementById("formulario").addEventListener("submit", (ev) => { ev.preventDefault(); cargar(); });
+  cargar();
+</script>
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block contenido %}
+<form id="filtros">
+  <div class="fila">
+    <div>
+      <label for="tipo">Tipo</label>
+      <select id="tipo"><option value="">todos</option><option>futbol5</option><option>futbol7</option><option>futbol11</option></select>
+    </div>
+    <div>
+      <label for="orden">Ordenar por</label>
+      <select id="orden"><option>id</option><option>nombre</option><option>precio_hora</option><option>tipo</option></select>
+    </div>
+    <div>
+      <label for="direccion">Direccion</label>
+      <select id="direccion"><option>asc</option><option>desc</option></select>
+    </div>
+    <div>
+      <label for="limite">Limite</label>
+      <input id="limite" type="number" value="20" min="1" max="100">
+    </div>
+    <button type="submit">Filtrar</button>
+  </div>
+</form>
+
+<table>
+  <thead><tr><th>#</th><th>Cancha</th><th>Sede</th><th>Tipo</th><th>Superficie</th><th>Precio/hora</th><th>Estado</th><th>Puntaje</th></tr></thead>
+  <tbody id="canchas"></tbody>
+</table>
+<p id="resumen"></p>
+
+<h2>Disponibilidad</h2>
+<form id="formulario-disponibilidad">
+  <div class="fila">
+    <div>
+      <label for="cancha">Cancha</label>
+      <input id="cancha" type="number" value="1" min="1">
+    </div>
+    <div>
+      <label for="fecha">Fecha</label>
+      <input id="fecha" type="date" value="2026-10-05">
+    </div>
+    <button type="submit">Ver franjas</button>
+  </div>
+</form>
+<table>
+  <thead><tr><th>Desde</th><th>Hasta</th><th>Estado</th></tr></thead>
+  <tbody id="franjas"></tbody>
+</table>
+<div class="aviso" id="aviso" hidden></div>
+{% endblock %}
+
+{% block guion %}
+<script>
+  async function cargar() {
+    const parametros = new URLSearchParams();
+    const tipo = document.getElementById("tipo").value;
+    if (tipo) parametros.set("tipo", tipo);
+    parametros.set("orden", document.getElementById("orden").value);
+    parametros.set("direccion", document.getElementById("direccion").value);
+    parametros.set("limite", document.getElementById("limite").value);
+    try {
+      const r = await api("/canchas?" + parametros.toString());
+      const cuerpo = document.getElementById("canchas");
+      cuerpo.innerHTML = "";
+      r.datos.forEach((c) => {
+        const tr = document.createElement("tr");
+        celdas(tr, [c.id, c.nombre, c.sede_id, c.tipo, c.superficie, c.precio_hora, c.estado, c.puntaje_promedio]);
+        cuerpo.appendChild(tr);
+      });
+      document.getElementById("resumen").textContent =
+        "Mostrando " + r.datos.length + " de " + r.total + " canchas (desde " + r.desde + ").";
+    } catch (e) {
+      avisar("aviso", e.message, true);
+    }
+  }
+
+  document.getElementById("filtros").addEventListener("submit", (ev) => { ev.preventDefault(); cargar(); });
+
+  document.getElementById("formulario-disponibilidad").addEventListener("submit", async (ev) => {
+    ev.preventDefault();
+    const id = document.getElementById("cancha").value;
+    const fecha = document.getElementById("fecha").value;
+    try {
+      const r = await api("/canchas/" + id + "/disponibilidad?fecha=" + fecha);
+      const cuerpo = document.getElementById("franjas");
+      cuerpo.innerHTML = "";
+      r.franjas.forEach((f) => {
+        const tr = document.createElement("tr");
+        celdas(tr, [f.hora_inicio, f.hora_fin, f.libre ? "libre" : "ocupada"]);
+        tr.lastChild.className = f.libre ? "libre" : "ocupada";
+        cuerpo.appendChild(tr);
+      });
+      avisar("aviso", r.libres + " franjas libres de " + r.franjas.length + ".", false);
+    } catch (e) {
+      avisar("aviso", e.message, true);
+    }
+  });
+
+  cargar();
+</script>
+{% endblock %}

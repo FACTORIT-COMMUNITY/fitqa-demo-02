@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ titulo }} — Canchas</title>
+  <style>
+    :root { --tinta: #1b2430; --papel: #f6f7f9; --linea: #d7dbe0; --acento: #17694a; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font: 15px/1.5 system-ui, sans-serif; color: var(--tinta); background: var(--papel); }
+    header { background: var(--tinta); color: #fff; padding: .8rem 1.2rem; display: flex; gap: 1.2rem; align-items: center; flex-wrap: wrap; }
+    header a { color: #fff; text-decoration: none; }
+    header a:hover { text-decoration: underline; }
+    header .marca { font-weight: 700; margin-right: auto; }
+    main { max-width: 1040px; margin: 1.5rem auto; padding: 0 1rem; }
+    h1 { font-size: 1.45rem; margin: 0 0 1rem; }
+    h2 { font-size: 1.1rem; margin: 1.6rem 0 .6rem; }
+    table { border-collapse: collapse; width: 100%; background: #fff; }
+    th, td { border: 1px solid var(--linea); padding: .45rem .6rem; text-align: left; }
+    th { background: #eef0f3; }
+    form { background: #fff; border: 1px solid var(--linea); padding: 1rem; margin: 1rem 0; }
+    label { display: block; margin: .5rem 0 .15rem; font-size: .85rem; color: #4a5561; }
+    input, select { padding: .4rem; border: 1px solid var(--linea); width: 100%; max-width: 320px; }
+    button { background: var(--acento); color: #fff; border: 0; padding: .5rem 1rem; cursor: pointer; margin-top: .8rem; }
+    button.sec { background: #55606d; }
+    .fila { display: flex; gap: 1rem; flex-wrap: wrap; align-items: flex-end; }
+    .aviso { padding: .6rem .8rem; border-left: 3px solid var(--acento); background: #fff; margin: .8rem 0; }
+    .error { border-left-color: #b3261e; color: #7a1b14; }
+    .pie { margin-top: 2.5rem; color: #6b7681; font-size: .8rem; }
+    .libre { color: var(--acento); font-weight: 600; }
+    .ocupada { color: #b3261e; }
+  </style>
+</head>
+<body>
+<header>
+  <span class="marca">Canchas</span>
+  <a href="/">Portada</a>
+  <a href="/ui/canchas">Canchas</a>
+  <a href="/ui/reservas">Reservas</a>
+  <a href="/ui/agenda">Agenda</a>
+  <a href="/ui/panel">Panel</a>
+  <a href="/ui/login" id="enlace-sesion">Iniciar sesion</a>
+</header>
+<main>
+  <h1>{{ titulo }}</h1>
+  {% block contenido %}{% endblock %}
+  <p class="pie">Version {{ version }} — la base es en memoria: <code>POST /admin/reset</code> la devuelve a la semilla.</p>
+</main>
+<script>
+  const guardarToken = (t) => sessionStorage.setItem("token", t || "");
+  const token = () => sessionStorage.getItem("token") || "";
+
+  async function api(ruta, opciones = {}) {
+    const cabeceras = Object.assign({ "Content-Type": "application/json" }, opciones.headers || {});
+    if (token()) cabeceras["Authorization"] = "Bearer " + token();
+    const r = await fetch(ruta, Object.assign({}, opciones, { headers: cabeceras }));
+    const texto = await r.text();
+    let cuerpo = null;
+    try { cuerpo = texto ? JSON.parse(texto) : null; } catch (e) { cuerpo = { error: texto }; }
+    if (!r.ok) throw Object.assign(new Error((cuerpo && cuerpo.error) || r.status), { estado: r.status, cuerpo });
+    return cuerpo;
+  }
+
+  function avisar(id, texto, esError) {
+    const caja = document.getElementById(id);
+    if (!caja) return;
+    caja.textContent = texto;
+    caja.className = "aviso" + (esError ? " error" : "");
+    caja.hidden = false;
+  }
+
+  function celdas(fila, valores) {
+    valores.forEach((v) => {
+      const td = document.createElement("td");
+      td.textContent = v === null || v === undefined ? "" : String(v);
+      fila.appendChild(td);
+    });
+  }
+
+  (async () => {
+    const enlace = document.getElementById("enlace-sesion");
+    if (!token()) return;
+    try {
+      const yo = await api("/auth/yo");
+      enlace.textContent = yo.nombre + " (" + yo.rol + ")";
+    } catch (e) {
+      sessionStorage.removeItem("token");
+    }
+  })();
+</script>
+{% block guion %}{% endblock %}
+</body>
+</html>

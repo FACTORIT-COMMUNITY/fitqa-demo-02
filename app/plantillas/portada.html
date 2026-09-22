@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block contenido %}
+<p>Reserva de canchas de futbol 5 y 7 en cuatro predios de la zona sur.</p>
+
+<h2>Sedes</h2>
+<table>
+  <thead><tr><th>#</th><th>Sede</th><th>Ciudad</th><th>Direccion</th><th>Canchas</th><th>Estado</th></tr></thead>
+  <tbody id="sedes"></tbody>
+</table>
+
+<h2>Canchas destacadas</h2>
+<table>
+  <thead><tr><th>#</th><th>Cancha</th><th>Tipo</th><th>Superficie</th><th>Techada</th><th>Precio/hora</th><th>Puntaje</th></tr></thead>
+  <tbody id="canchas"></tbody>
+</table>
+<div class="aviso" id="aviso" hidden></div>
+{% endblock %}
+
+{% block guion %}
+<script>
+  (async () => {
+    try {
+      const sedes = await api("/sedes?limite=50");
+      const cuerpoSedes = document.getElementById("sedes");
+      sedes.datos.forEach((s) => {
+        const tr = document.createElement("tr");
+        celdas(tr, [s.id, s.nombre, s.ciudad, s.direccion, s.canchas, s.activa ? "activa" : "cerrada"]);
+        cuerpoSedes.appendChild(tr);
+      });
+
+      const canchas = await api("/canchas?limite=8&orden=nombre");
+      const cuerpoCanchas = document.getElementById("canchas");
+      canchas.datos.forEach((c) => {
+        const tr = document.createElement("tr");
+        celdas(tr, [c.id, c.nombre, c.tipo, c.superficie, c.techada ? "si" : "no", c.precio_hora, c.puntaje_promedio]);
+        cuerpoCanchas.appendChild(tr);
+      });
+    } catch (e) {
+      avisar("aviso", "No se pudo cargar la portada: " + e.message, true);
+    }
+  })();
+</script>
+{% endblock %}

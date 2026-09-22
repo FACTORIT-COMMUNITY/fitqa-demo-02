@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% block contenido %}
+<p>Hace falta iniciar sesion. Las acciones de confirmar y marcar no-show son de quien administra la cancha.</p>
+
+<form id="formulario-nueva">
+  <div class="fila">
+    <div>
+      <label for="cancha_id">Cancha</label>
+      <input id="cancha_id" type="number" value="1" min="1">
+    </div>
+    <div>
+      <label for="fecha">Fecha</label>
+      <input id="fecha" type="date" value="2026-10-12">
+    </div>
+    <div>
+      <label for="hora_inicio">Desde</label>
+      <input id="hora_inicio" value="19:00">
+    </div>
+    <div>
+      <label for="hora_fin">Hasta</label>
+      <input id="hora_fin" value="20:00">
+    </div>
+    <div>
+      <label for="nota">Nota</label>
+      <input id="nota" maxlength="280">
+    </div>
+    <button type="submit">Reservar</button>
+  </div>
+</form>
+
+<div class="fila">
+  <div>
+    <label for="estado">Filtrar por estado</label>
+    <select id="estado">
+      <option value="">todos</option>
+      <option>pendiente</option><option>confirmada</option><option>cancelada</option>
+      <option>completada</option><option>no-show</option>
+    </select>
+  </div>
+  <button type="button" class="sec" id="recargar">Recargar</button>
+</div>
+
+<table>
+  <thead><tr><th>#</th><th>Cancha</th><th>Titular</th><th>Fecha</th><th>Desde</th><th>Hasta</th><th>Estado</th><th>Acciones</th></tr></thead>
+  <tbody id="reservas"></tbody>
+</table>
+<p id="resumen"></p>
+<div class="aviso" id="aviso" hidden></div>
+{% endblock %}
+
+{% block guion %}
+<script>
+  async function accion(id, verbo) {
+    try {
+      await api("/reservas/" + id + "/" + verbo, { method: "POST" });
+      avisar("aviso", "Reserva " + id + ": " + verbo, false);
+      cargar();
+    } catch (e) {
+      avisar("aviso", e.message, true);
+    }
+  }
+
+  function boton(texto, alClic) {
+    const b = document.createElement("button");
+    b.textContent = texto;
+    b.className = "sec";
+    b.style.margin = "0 .2rem 0 0";
+    b.addEventListener("click", alClic);
+    return b;
+  }
+
+  async function cargar() {
+    const estado = document.getElementById("estado").value;
+    const ruta = "/reservas?limite=50" + (estado ? "&estado=" + estado : "");
+    try {
+      const r = await api(ruta);
+      const cuerpo = document.getElementById("reservas");
+      cuerpo.innerHTML = "";
+      r.datos.forEach((x) => {
+        const tr = document.createElement("tr");
+        celdas(tr, [x.id, x.cancha, x.usuario, x.fecha, x.hora_inicio, x.hora_fin, x.estado]);
+        const td = document.createElement("td");
+        td.appendChild(boton("Confirmar", () => accion(x.id, "confirmar")));
+        td.appendChild(boton("Cancelar", () => accion(x.id, "cancelar")));
+        td.appendChild(boton("No-show", () => accion(x.id, "no-show")));
+        tr.appendChild(td);
+        cuerpo.appendChild(tr);
+      });
+      document.getElementById("resumen").textContent =
+        "Mostrando " + r.datos.length + " de " + r.total + " reservas.";
+    } catch (e) {
+      avisar("aviso", e.message, true);
+    }
+  }
+
+  document.getElementById("formulario-nueva").addEventListener("submit", async (ev) => {
+    ev.preventDefault();
+    try {
+      const r = await api("/reservas", {
+        method: "POST",
+        body: JSON.stringify({
+          cancha_id: Number(document.getElementById("cancha_id").value),
+          fecha: document.getElementById("fecha").value,
+          hora_inicio: document.getElementById("hora_inicio").value,
+          hora_fin: document.getElementById("hora_fin").value,
+          nota: document.getElementById("nota").value || null,
+        }),
+      });
+      avisar("aviso", "Reserva " + r.id + " creada en estado " + r.estado + ".", false);
+      cargar();
+    } catch (e) {
+      avisar("aviso", e.message, true);
+    }
+  });
+
+  document.getElementById("recargar").addEventListener("click", cargar);
+  cargar();
+</script>
+{% endblock %}

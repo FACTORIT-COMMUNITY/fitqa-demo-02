@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block contenido %}
+<p>Grilla del dia por cancha. Pide rol duenio o admin.</p>
+
+<form id="formulario">
+  <div class="fila">
+    <div>
+      <label for="fecha">Fecha</label>
+      <input id="fecha" type="date" value="2026-10-05">
+    </div>
+    <div>
+      <label for="sede">Sede (opcional)</label>
+      <input id="sede" type="number" min="1" placeholder="todas">
+    </div>
+    <button type="submit">Ver agenda</button>
+  </div>
+</form>
+
+<div id="grilla"></div>
+<div class="aviso" id="aviso" hidden></div>
+{% endblock %}
+
+{% block guion %}
+<script>
+  document.getElementById("formulario").addEventListener("submit", async (ev) => {
+    ev.preventDefault();
+    const fecha = document.getElementById("fecha").value;
+    const sede = document.getElementById("sede").value;
+    try {
+      const r = await api("/reservas/agenda?fecha=" + fecha + (sede ? "&sede_id=" + sede : ""));
+      const destino = document.getElementById("grilla");
+      destino.innerHTML = "";
+      if (!r.canchas.length) {
+        avisar("aviso", "No hay canchas visibles para esta sesion.", false);
+        return;
+      }
+      r.canchas.forEach((c) => {
+        const titulo = document.createElement("h2");
+        titulo.textContent = c.cancha + " (#" + c.cancha_id + ")";
+        destino.appendChild(titulo);
+        const tabla = document.createElement("table");
+        tabla.innerHTML = "<thead><tr><th>Desde</th><th>Hasta</th><th>Estado</th><th>Titular</th></tr></thead>";
+        const cuerpo = document.createElement("tbody");
+        c.franjas.forEach((f) => {
+          const tr = document.createElement("tr");
+          celdas(tr, [
+            f.hora_inicio,
+            f.hora_fin,
+            f.reserva ? f.reserva.estado : "libre",
+            f.reserva ? f.reserva.usuario : "",
+          ]);
+          cuerpo.appendChild(tr);
+        });
+        tabla.appendChild(cuerpo);
+        destino.appendChild(tabla);
+      });
+      avisar("aviso", "Agenda del " + r.fecha + " (dia " + r.dia_semana + ").", false);
+    } catch (e) {
+      avisar("aviso", e.message, true);
+    }
+  });
+</script>
+{% endblock %}

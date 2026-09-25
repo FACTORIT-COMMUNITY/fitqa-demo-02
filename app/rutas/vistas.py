@@ -23,7 +23,7 @@ router = APIRouter(tags=["vistas"], include_in_schema=False)
 def _render(peticion: Request, plantilla: str, titulo: str, **extra) -> HTMLResponse:
     contexto = {"request": peticion, "titulo": titulo, "version": VERSION}
     contexto.update(extra)
-    return PLANTILLAS.TemplateResponse(plantilla, contexto)
+    return PLANTILLAS.TemplateResponse(peticion, plantilla, contexto)
 
 
 @router.get("/", response_class=HTMLResponse)
